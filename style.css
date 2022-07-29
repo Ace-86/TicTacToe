@@ -19,6 +19,7 @@ body {
 .display-center {
     grid-row: 2 / 3;
     grid-column: 2 / 4;
+    background-color: black;
 }
 
 .footer {
@@ -31,7 +32,24 @@ body {
 }
 
 #border2 {
-    border: 2px solid red;
+    border: 5px solid rgb(0, 0, 0);
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.pos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+    width: auto;
+    color: white;
+    font-size: 90px;
+    border: 2px solid rgb(133, 34, 190);
 }
 
 #holder1 {
@@ -40,59 +58,6 @@ body {
 
 #holder2 {
     height: 600px;
-}
-
-
-
-.gameboard {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-}
-
-.pos0 {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-}
-
-.pos1 {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-}
-
-.pos2 {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-}
-
-.pos3 {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-}
-
-.pos4 {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
-}
-
-.pos5 {
-    grid-row: 2 / 3;
-    grid-column: 3 / 4;
-}
-
-.pos6 {
-    grid-row: 3 / 4;
-    grid-column: 1 / 2;
-}
-
-.pos7 {
-    grid-row: 3 / 4;
-    grid-column: 2 / 3;
-}
-
-.pos8 {
-    grid-row: 3 / 4;
-    grid-column: 3 / 4;
 }
 
 #holder3 {
