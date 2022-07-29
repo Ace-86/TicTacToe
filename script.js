@@ -1,42 +1,39 @@
 const gameboard = (() => {
-    const boardStatus = [
-        'x', 'x', 'x',
-        'x', 'x', 'x',
-        'x', 'x', 'x'
+    const gameArray = [
+        'X', '', 'X',
+        '', 'X', 'X',
+        '', '', 'X'
     ];
+
+    // populate board with boardArray
+    const populateBoard = () => {
+        const board = document.getElementsByClassName('pos');
+        for (let i = 0; i < board.length; i++)
+        board[i].innerHTML = gameArray[i];
+    };
+
+    const boardArr = () => {
+        const solodiv = document.querySelector('#border3')
+        const displayArray = document.querySelectorAll('#border3');
+        let boardArray = Array.from(displayArray);
+        console.log(boardArray);
+        };
 
     const position = () => {
 
-    }
+    };
+
     const player = () => {
         
-    }
+    };
     
     const marker = () => {
 
-    }
-    const board = () => {
-        const displayArray = document.querySelectorAll('#border3');
-        let boardArray = Array.from(displayArray);
-        boardArray.forEach((position) => {
-            
-        })
-         console.log(boardArray);
     };
-    
-    return {boardStatus, board}
-})();
 
-function deleteCardEvent() {
-    const removeButtons = document.querySelectorAll('.removeBtn');
-    let removeArray = Array.from(removeButtons);
-    removeArray.forEach((button) => {
-        button.addEventListener('click', () => {
-            library.splice(removeArray.indexOf(button), 1);
-            createCard();
-        });
-    }); 
-};
+
+    return {gameArray, populateBoard, boardArr}
+})();
 
 
 
