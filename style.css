@@ -2,13 +2,15 @@ body {
     display: grid;
     grid-template-columns: 1fr, 1fr 1fr;
     grid-template-rows: repeat(auto, minmax(300px, 1fr));
-    background-color: lavender;
+    background-color: rgb(0, 0, 0);
 
 }
 
 .header {
     grid-row: 1 / 2;
     grid-column: 1 / 4;
+    background-color: rgb(133, 34, 190);
+
 }
 
 .display-left {
@@ -43,6 +45,8 @@ body {
 .footer {
     grid-row: 3 / 4;
     grid-column: 1 / 4;
+    /* background-color: rgb(133, 34, 190); */
+
 }
 
 #border {
