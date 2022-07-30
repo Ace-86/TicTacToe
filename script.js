@@ -19,20 +19,22 @@ const gameboard = (() => {
         console.log(boardArray);
         };
 
-    const position = () => {
-
+    const clearBoard = () => {
+        const board = document.getElementsByClassName('pos');
+        for (let i = 0; i < board.length; i++)
+        board[i].innerHTML = "";
     };
 
     const player = () => {
         
     };
     
-    const marker = () => {
+    const placemarker = () => {
 
     };
 
 
-    return {gameArray, populateBoard, boardArr}
+    return {gameArray, populateBoard, boardArr, clearBoard}
 })();
 
 
