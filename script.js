@@ -1,3 +1,26 @@
+
+
+// ----------- on click event-----------
+// const position = document.querySelector('.pos')
+const board1 = document.getElementsByClassName('pos');
+let boardArr = Array.from(board1);
+// const gameArray = [
+//     'X', '', 'X',
+//     '', 'X', 'X',
+//     '', '', 'X'
+// ];
+
+
+boardArr.forEach((pos) => {
+    pos.addEventListener('click', () => {
+        gameboard.gameArray;
+        gameboard.populateBoard();
+        console.log('hey');
+    });
+});
+// ---------------on click event--------------------
+
+
 const gameboard = (() => {
     const gameArray = [
         'X', '', 'X',
@@ -29,9 +52,15 @@ const gameboard = (() => {
         
     };
     
-    const placemarker = () => {
-
-    };
+    // const placemarker = () => {
+    //     const board = document.getElementsByClassName('pos');
+    //     let boardArr = Array.from(board);
+    //     boardArr.forEach((pos) => {
+    //         pos.addEventListener('click', () => {
+    //             board.innerHTML = "O";
+    //         });
+    // //     });
+    // };
 
 
     return {gameArray, populateBoard, boardArr, clearBoard}
