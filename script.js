@@ -1,7 +1,17 @@
 
 
 const board1 = document.getElementsByClassName('pos');
+const newBtn = document.querySelector('.newGame');
+const restartBtn = document.querySelector('.restart');
 let boardArr = Array.from(board1);
+
+newBtn.addEventListener('click', () => {
+    gameboard.newGame();
+});
+
+restartBtn.addEventListener('click', () => {
+    gameboard.restart();
+});
 
 
 boardArr.forEach((pos) => {
