@@ -20,20 +20,49 @@ body {
     grid-column: 1 / 2;
 } 
 
+/* --------------------------- */
 .p1 {
     height: 200px;
     background-color: red;
 }
+
+.p1-display {
+    margin: 20px;
+    height: 100px;
+    /* width: 100px; */
+    background-color: black;
+    color: white;
+}
+
+/* ------------------------------ */
 .score {
     height: 200px;
     background-color: green;
 }
+
+.score-display {
+    margin: 20px;
+    height: 100px;
+    /* width: 100px; */
+    background-color: black;
+    color: white;
+}
+
+/* ---------------------------------- */
+
 .p2 {
     height: 200px;
     background-color: red;
 }
 
-
+.p2-display {
+    margin: 20px;
+    height: 100px;
+    /* width: 100px; */
+    background-color: black;
+    color: white;
+}
+/* -------------------------------------- */
 
 
 .display-center {
