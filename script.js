@@ -1,14 +1,7 @@
 
 
-// ----------- on click event-----------
-// const position = document.querySelector('.pos')
 const board1 = document.getElementsByClassName('pos');
 let boardArr = Array.from(board1);
-// const gameArray = [
-//     'X', '', 'X',
-//     '', 'X', 'X',
-//     '', '', 'X'
-// ];
 
 
 boardArr.forEach((pos) => {
@@ -18,6 +11,9 @@ boardArr.forEach((pos) => {
         console.log('hey');
     });
 });
+
+
+
 // ---------------on click event--------------------
 
 
@@ -28,6 +24,7 @@ const gameboard = (() => {
         '', '', 'X'
     ];
 
+    round = 0;
     // populate board with boardArray
     const populateBoard = () => {
         const board = document.getElementsByClassName('pos');
@@ -47,23 +44,26 @@ const gameboard = (() => {
         for (let i = 0; i < board.length; i++)
         board[i].innerHTML = "";
     };
-
-    const player = () => {
-        
-    };
     
-    // const placemarker = () => {
-    //     const board = document.getElementsByClassName('pos');
-    //     let boardArr = Array.from(board);
-    //     boardArr.forEach((pos) => {
-    //         pos.addEventListener('click', () => {
-    //             board.innerHTML = "O";
-    //         });
-    // //     });
-    // };
+    const roundCount = () => {
+        return round++;
+    }
+    
+    const roundRestart = () => {
+        return round = 0;
+    }
+    
+    const restart = () => {
+        roundRestart();
+        clearBoard();       
+    };
 
+    const newGame = () => {
+        restart();
+        // open modal
+    }
 
-    return {gameArray, populateBoard, boardArr, clearBoard}
+    return {gameArray, populateBoard, boardArr, clearBoard, roundCount, roundRestart, restart, newGame}
 })();
 
 
