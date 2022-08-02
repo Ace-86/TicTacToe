@@ -1,10 +1,13 @@
 # TicTacToe
 
-clearboard function 
+<!-- clearboard function  -->
+<!-- new game modal -->
+<!-- win conditions (8 total) -->
+
+
 new game function
 player piece select
 x and o images
-win conditions (8 total)
 tie condition
 initiate player turn 
 check win condition
