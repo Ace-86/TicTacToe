@@ -17,6 +17,7 @@ restartBtn.addEventListener('click', () => {
 boardArr.forEach((pos) => {
     pos.addEventListener('click', () => {
         gameboard.gameArray;
+        gameboard.mark();
         gameboard.populateBoard();
         console.log('hey');
     });
@@ -45,7 +46,16 @@ const gameboard = (() => {
         [2, 4, 6]
     ];
 
-    round = 0;
+    const players = [{
+        player: 1,
+        marker: 'O'},
+        {player: 2,
+        marker: 'X'}
+    ];
+
+
+
+    turn = 0;
     // populate board with boardArray
     const populateBoard = () => {
         const board = document.getElementsByClassName('pos');
@@ -66,25 +76,32 @@ const gameboard = (() => {
         board[i].innerHTML = "";
     };
     
-    const roundCount = () => {
+    const turnCount = () => {
         return round++;
     }
     
-    const roundRestart = () => {
-        return round = 0;
+    const turnRestart = () => {
+        return turn = 0;
     }
     
     const restart = () => {
-        roundRestart();
+        turnRestart();
         clearBoard();       
     };
 
     const newGame = () => {
         restart();
         // open modal
-    }
+    };
 
-    return {gameArray, populateBoard, boardArr, clearBoard, roundCount, roundRestart, restart, newGame}
+    const mark = () => {
+        gameArray[2] = players[1].marker;
+        console.log(gameArray);
+    };
+
+
+
+    return {mark, players, gameArray, populateBoard, boardArr, clearBoard, turnCount, turnRestart, restart, newGame}
 })();
 
 
