@@ -7,6 +7,8 @@ const $modalForm = document.querySelector('.modal');
 const $exit = document.querySelector('.exit');
 let boardArr = Array.from(board1);
 
+turn = 0;
+
 newBtn.addEventListener('click', () => {
     gameboard.newGame();
 });
@@ -19,18 +21,19 @@ restartBtn.addEventListener('click', () => {
 boardArr.forEach((pos) => {
     pos.addEventListener('click', () => {
         gameboard.gameArray;
+        gameboard.players;
         gameboard.mark();
         gameboard.populateBoard();
-        console.log('hey');
+        gameboard.turnCount();
     });
 });
+
 // ---------------on click event--------------------
 
 
 // ----------------modal--------------
 newBtn.onclick = function() {
     $modalForm.style.display = "block";
-   
 };
 
 // closes modal when clicked outside modal window
@@ -76,7 +79,6 @@ const gameboard = (() => {
 
 
 
-    turn = 0;
     // populate board with boardArray
     const populateBoard = () => {
         const board = document.getElementsByClassName('pos');
@@ -98,7 +100,7 @@ const gameboard = (() => {
     };
     
     const turnCount = () => {
-        return round++;
+        return turn++;
     }
     
     const turnRestart = () => {
@@ -116,8 +118,13 @@ const gameboard = (() => {
     };
 
     const mark = () => {
+        if (turn = 0) {
         gameArray[2] = players[1].marker;
         console.log(gameArray);
+        } else {
+            gameArray[2] = players[0].marker;
+        } 
+
     };
 
 
@@ -127,4 +134,31 @@ const gameboard = (() => {
 
 
 
+
+
+
+        // function deleteCardEvent() {
+        //     const removeButtons = document.querySelectorAll('.removeBtn');
+        //     let removeArray = Array.from(removeButtons);
+        //     removeArray.forEach((button) => {
+        //         button.addEventListener('click', () => {
+        //             library.splice(removeArray.indexOf(button), 1);
+        //             createCard();
+        //             console.log(removeArray)
+        //         });
+        //     }); 
+        // };
+
+
+        // function statusCarEvents(){                                      
+        //     const statusButtons = document.querySelectorAll('.stat')
+        //     let statusArray = Array.from(statusButtons)
+        //     statusArray.forEach((button) => {
+        //         button.addEventListener('click', () => {
+        //                 library[statusArray.indexOf(button)].status = 
+        //                 !(library[statusArray.indexOf(button)].status)
+        //                 createCard();
+        //         });
+                
+        //     });
 
