@@ -3,6 +3,8 @@
 const board1 = document.getElementsByClassName('pos');
 const newBtn = document.querySelector('.newGame');
 const restartBtn = document.querySelector('.restart');
+const $modalForm = document.querySelector('.modal');
+const $exit = document.querySelector('.exit');
 let boardArr = Array.from(board1);
 
 newBtn.addEventListener('click', () => {
@@ -22,10 +24,29 @@ boardArr.forEach((pos) => {
         console.log('hey');
     });
 });
-
-
-
 // ---------------on click event--------------------
+
+
+// ----------------modal--------------
+newBtn.onclick = function() {
+    $modalForm.style.display = "block";
+   
+};
+
+// closes modal when clicked outside modal window
+window.onclick = function(event) {
+    if (event.target == $modalForm) {
+        $modalForm.style.display = "none";
+    }
+};
+
+$exit.onclick = () => {
+    $modalForm.style.display = "none";
+}
+
+// -----------------------------------------
+
+
 
 
 const gameboard = (() => {
