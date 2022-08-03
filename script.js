@@ -1,12 +1,11 @@
 
 
-const board1 = document.getElementsByClassName('pos');
+// const board1 = document.getElementsByClassName('pos');
 const newBtn = document.querySelector('.newGame');
 const restartBtn = document.querySelector('.restart');
 const $modalForm = document.querySelector('.modal');
 const $exit = document.querySelector('.exit');
-let boardArr = Array.from(board1);
- 
+// let boardArr = Array.from(board1);
 turn = 0;
 
 newBtn.addEventListener('click', () => {
@@ -18,17 +17,22 @@ restartBtn.addEventListener('click', () => {
 });
 
 
-boardArr.forEach((pos) => {
-    pos.addEventListener('click', () => {
+// boardArr.forEach((pos) => {
+//     pos.addEventListener('click', () => {      
+//         gameboard.gameArray;
+//         gameboard.players;
+//         gameboard.turnCount();
+//         gameArray.splice(boardArr.indexOf(pos), 1, 'O');  
+//         // for (i = 0; i < boardArr.length; i++)
+//             // boardArr[3] = 8;
+
+//         // gameboard.mark(i);
+//         // gameboard.populateBoard();
+//         console.log(pos)
         
-        gameboard.gameArray;
-        gameboard.players;
-        gameboard.turnCount();
-        gameboard.mark();
-        gameboard.populateBoard();
-        // console.log(turn)
-    });
-});
+
+//     });
+// });
 
 // ---------------on click event--------------------
 
@@ -51,14 +55,17 @@ $exit.onclick = () => {
 
 // -----------------------------------------
 
-
-
-
 const gameboard = (() => {
+
+    var player = '' ;
+    const board1 = document.getElementsByClassName('pos');
+    var boardArr = Array.from(board1);
+
+
     const gameArray = [
-        'X', '', 'X',
-        '', 'X', 'X',
-        '', '', 'X'
+        '', '', '',
+        '', '', '',
+        '', '', ''
     ];
 
     const winConditions = [
@@ -74,9 +81,9 @@ const gameboard = (() => {
 
     const players = [{
         player: 1,
-        marker: 'O'},
+        marker: 'X'},
         {player: 2,
-        marker: 'X'}
+        marker: 'O'}
     ];
 
 
@@ -87,7 +94,7 @@ const gameboard = (() => {
         board[i].innerHTML = gameArray[i];
     };
 
-    const boardArr = () => {
+    const boardArrs = () => {
         const solodiv = document.querySelector('#border3')
         const displayArray = document.querySelectorAll('#border3');
         let boardArray = Array.from(displayArray);
@@ -124,17 +131,39 @@ const gameboard = (() => {
 
     const mark = () => {
         if (turn == 0) {
-        gameArray[2] = players[1].marker;
+            player = players[0].marker;
         } else {
-            gameArray[2] = players[0].marker;
+             player = players[1].marker;
         } 
         
     };
 
 
 
-    return {mark, players, gameArray, populateBoard, boardArr, clearBoard, turnCount, turnRestart, restart, newGame}
+    const front = boardArr.forEach((pos) => {
+        pos.addEventListener('click', () => {  
+
+            gameboard.gameArray;
+            gameboard.players;
+            gameboard.turnCount();
+            gameboard.mark();
+            gameArray.splice(boardArr.indexOf(pos), 1, player);  
+            gameboard.populateBoard();
+            console.log(pos)
+            console.log(player)
+            
+    
+        });
+    });
+    
+
+    return {front, boardArrs, mark, players, gameArray, populateBoard, boardArr, clearBoard, turnCount, turnRestart, restart, newGame}
 })();
+
+
+
+
+
 
 
 
