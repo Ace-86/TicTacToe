@@ -6,7 +6,7 @@ const restartBtn = document.querySelector('.restart');
 const $modalForm = document.querySelector('.modal');
 const $exit = document.querySelector('.exit');
 let boardArr = Array.from(board1);
-
+ 
 turn = 0;
 
 newBtn.addEventListener('click', () => {
@@ -20,11 +20,13 @@ restartBtn.addEventListener('click', () => {
 
 boardArr.forEach((pos) => {
     pos.addEventListener('click', () => {
+        
         gameboard.gameArray;
         gameboard.players;
+        gameboard.turnCount();
         gameboard.mark();
         gameboard.populateBoard();
-        gameboard.turnCount();
+        // console.log(turn)
     });
 });
 
@@ -78,7 +80,6 @@ const gameboard = (() => {
     ];
 
 
-
     // populate board with boardArray
     const populateBoard = () => {
         const board = document.getElementsByClassName('pos');
@@ -100,8 +101,12 @@ const gameboard = (() => {
     };
     
     const turnCount = () => {
-        return turn++;
-    }
+        if (turn == 0) {
+       return turn = 1  
+        } else {
+            return turn = 0
+        }
+        };
     
     const turnRestart = () => {
         return turn = 0;
@@ -118,13 +123,12 @@ const gameboard = (() => {
     };
 
     const mark = () => {
-        if (turn = 0) {
+        if (turn == 0) {
         gameArray[2] = players[1].marker;
-        console.log(gameArray);
         } else {
             gameArray[2] = players[0].marker;
         } 
-
+        
     };
 
 
