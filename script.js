@@ -1,17 +1,12 @@
-
-
-// const board1 = document.getElementsByClassName('pos');
 const newBtn = document.querySelector('.newGame');
 const restartBtn = document.querySelector('.restart');
 const $modalForm = document.querySelector('.modal');
 const $exit = document.querySelector('.exit');
-// let boardArr = Array.from(board1);
 turn = 0;
 
 restartBtn.addEventListener('click', () => {
     gameboard.restart();  
 });
-
 
 // ----------------modal--------------
 newBtn.onclick = function() {
@@ -27,11 +22,9 @@ window.onclick = function(event) {
 
 $exit.onclick = () => {
     $modalForm.style.display = "none";
-}
+};
 
 // -----------------------------------------
-
-
 
 const gameboard = (() => {
 
@@ -64,7 +57,6 @@ const gameboard = (() => {
         marker: 'O'}
     ];
 
-
     // populate board with boardArray
     const populateBoard = () => {
         const board = document.getElementsByClassName('pos');
@@ -84,11 +76,12 @@ const gameboard = (() => {
     const clear = () => {
         const board = document.getElementsByClassName('pos');
         for (let i = 0; i < board.length; i++) {
-        board[i].innerHTML = "";
-        gameArray[i] = '';
+            board[i].innerHTML = "";
+            gameArray[i] = '';
         }
-    }
+    };
     
+    // ---------turn control---------
     const turnCount = () => {
         if (turn == 0) {
             return turn = 1  
@@ -99,28 +92,27 @@ const gameboard = (() => {
     
     const turnRestart = () => {
         return turn = 0;
-    }
-    
+    };
+    // ------------------------------
+
+    // resets game turn, board values and empties innerHTML
     const restart = () => {
         turnRestart();
         resetValue();
         clear();
     };
 
-    const newGame = () => {
-        restart();
-    };
-
+    // players marker switches every turn, starting with player 1 (turn 0)
     const mark = () => {
         if (turn == 0) {
-            player = players[0].marker;
+            player = players[1].marker;
         } else {
-             player = players[1].marker;
+            player = players[0].marker;
         } 
     };
 
 
-
+// board onclick event triggers player marking board
     const gameEvent = boardArr.forEach((pos) => {
         pos.addEventListener('click', () => { 
             if (pos.getAttribute('value') == 'true') {
@@ -134,11 +126,11 @@ const gameboard = (() => {
             } else {
                 return
             }
-        });
+        })
     });
     
     return {gameEvent, mark, players, 
         gameArray, populateBoard, boardArr, 
         resetValue, turnCount, turnRestart, 
-        restart, newGame, clear}
+        restart, clear}
 })();
