@@ -8,33 +8,9 @@ const $exit = document.querySelector('.exit');
 // let boardArr = Array.from(board1);
 turn = 0;
 
-newBtn.addEventListener('click', () => {
-    gameboard.newGame();
-});
-
 restartBtn.addEventListener('click', () => {
-    gameboard.restart();
+    gameboard.restart();  
 });
-
-
-// boardArr.forEach((pos) => {
-//     pos.addEventListener('click', () => {      
-//         gameboard.gameArray;
-//         gameboard.players;
-//         gameboard.turnCount();
-//         gameArray.splice(boardArr.indexOf(pos), 1, 'O');  
-//         // for (i = 0; i < boardArr.length; i++)
-//             // boardArr[3] = 8;
-
-//         // gameboard.mark(i);
-//         // gameboard.populateBoard();
-//         console.log(pos)
-        
-
-//     });
-// });
-
-// ---------------on click event--------------------
 
 
 // ----------------modal--------------
@@ -55,6 +31,8 @@ $exit.onclick = () => {
 
 // -----------------------------------------
 
+
+
 const gameboard = (() => {
 
     var player = '' ;
@@ -62,7 +40,7 @@ const gameboard = (() => {
     var boardArr = Array.from(board1);
 
 
-    const gameArray = [
+    gameArray = [
         '', '', '',
         '', '', '',
         '', '', ''
@@ -94,26 +72,30 @@ const gameboard = (() => {
         board[i].innerHTML = gameArray[i];
     };
 
-    const boardArrs = () => {
-        const solodiv = document.querySelector('#border3')
-        const displayArray = document.querySelectorAll('#border3');
-        let boardArray = Array.from(displayArray);
-        console.log(boardArray);
-        };
-
-    const clearBoard = () => {
+        // resets div.pos value back to true
+    const resetValue = () => {
         const board = document.getElementsByClassName('pos');
-        for (let i = 0; i < board.length; i++)
-        board[i].innerHTML = "";
+        for (let i = 0; i < board.length; i++) {
+            board[i].setAttribute('value', true);
+        };
     };
+
+    // clears board display
+    const clear = () => {
+        const board = document.getElementsByClassName('pos');
+        for (let i = 0; i < board.length; i++) {
+        board[i].innerHTML = "";
+        gameArray[i] = '';
+        }
+    }
     
     const turnCount = () => {
         if (turn == 0) {
-       return turn = 1  
-        } else {
-            return turn = 0
-        }
-        };
+            return turn = 1  
+                } else {
+                    return turn = 0
+                }
+            };
     
     const turnRestart = () => {
         return turn = 0;
@@ -121,12 +103,12 @@ const gameboard = (() => {
     
     const restart = () => {
         turnRestart();
-        clearBoard();       
+        resetValue();
+        clear();
     };
 
     const newGame = () => {
         restart();
-        // open modal
     };
 
     const mark = () => {
@@ -135,68 +117,28 @@ const gameboard = (() => {
         } else {
              player = players[1].marker;
         } 
-        
     };
 
 
 
-    const front = boardArr.forEach((pos) => {
+    const gameEvent = boardArr.forEach((pos) => {
         pos.addEventListener('click', () => { 
             if (pos.getAttribute('value') == 'true') {
-            pos.setAttribute('value', false); 
-            gameboard.gameArray;
-            gameboard.players;
-            gameboard.turnCount();
-            gameboard.mark();
-            gameArray.splice(boardArr.indexOf(pos), 1, player);  
-            gameboard.populateBoard();
-            // value = false;
-            console.log(board1.value);
-            console.log(player);
-            console.log(pos.getAttribute('value',)); 
+                gameboard.gameArray;
+                gameboard.players;
+                gameboard.turnCount();
+                gameboard.mark();
+                gameArray.splice(boardArr.indexOf(pos), 1, player);  
+                gameboard.populateBoard();
+                pos.setAttribute('value', false); 
             } else {
                 return
             }
-    
         });
     });
     
-
-    return {front, boardArrs, mark, players, gameArray, populateBoard, boardArr, clearBoard, turnCount, turnRestart, restart, newGame}
+    return {gameEvent, mark, players, 
+        gameArray, populateBoard, boardArr, 
+        resetValue, turnCount, turnRestart, 
+        restart, newGame, clear}
 })();
-
-
-
-
-
-
-
-
-
-
-
-        // function deleteCardEvent() {
-        //     const removeButtons = document.querySelectorAll('.removeBtn');
-        //     let removeArray = Array.from(removeButtons);
-        //     removeArray.forEach((button) => {
-        //         button.addEventListener('click', () => {
-        //             library.splice(removeArray.indexOf(button), 1);
-        //             createCard();
-        //             console.log(removeArray)
-        //         });
-        //     }); 
-        // };
-
-
-        // function statusCarEvents(){                                      
-        //     const statusButtons = document.querySelectorAll('.stat')
-        //     let statusArray = Array.from(statusButtons)
-        //     statusArray.forEach((button) => {
-        //         button.addEventListener('click', () => {
-        //                 library[statusArray.indexOf(button)].status = 
-        //                 !(library[statusArray.indexOf(button)].status)
-        //                 createCard();
-        //         });
-                
-        //     });
-
