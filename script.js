@@ -141,17 +141,22 @@ const gameboard = (() => {
 
 
     const front = boardArr.forEach((pos) => {
-        pos.addEventListener('click', () => {  
-
+        pos.addEventListener('click', () => { 
+            if (pos.getAttribute('value') == 'true') {
+            pos.setAttribute('value', false); 
             gameboard.gameArray;
             gameboard.players;
             gameboard.turnCount();
             gameboard.mark();
             gameArray.splice(boardArr.indexOf(pos), 1, player);  
             gameboard.populateBoard();
-            console.log(pos)
-            console.log(player)
-            
+            // value = false;
+            console.log(board1.value);
+            console.log(player);
+            console.log(pos.getAttribute('value',)); 
+            } else {
+                return
+            }
     
         });
     });
