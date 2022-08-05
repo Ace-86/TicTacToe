@@ -1,19 +1,24 @@
 # TicTacToe
 
-<!-- clearboard function  -->
-<!-- new game modal -->
-<!-- win conditions (8 total) -->
+To-Do:
 
+-new game function
 
-new game function
-player piece select
-x and o images
-tie condition
-initiate player turn 
-check win condition
-clickable div to create X
-boolean values added to each div or array item/ false default, true = cannot select div
-onclick events to change boolean value on div; change matching array index value
+-check win condition
 
+-tie condition
 
-cpu
+-name input (modal) shows in display
+
+-round count shows in display (best 2 out of 3)
+
+-allow players to choose which marker (modal)
+
+-
+
+-display shows winner, round, player turn; updated each turn
+
+-player piece select in modal (currently x goes first)
+
+-npc a.i
+
