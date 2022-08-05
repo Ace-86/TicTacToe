@@ -1,33 +1,44 @@
-const newBtn = document.querySelector('.newGame');
-const restartBtn = document.querySelector('.restart');
-const $modalForm = document.querySelector('.modal');
-const $exit = document.querySelector('.exit');
 turn = 0;
 
-restartBtn.addEventListener('click', () => {
-    gameboard.restart();  
-});
+const modalFunct = (() => {
+    
+    const newBtn = document.querySelector('.newGame');
+    const restartBtn = document.querySelector('.restart');
+    const $modalForm = document.querySelector('.modal');
+    const $exit = document.querySelector('.exit');
+    
+    const reset = 
+        restartBtn.addEventListener('click', () => {
+            gameboard.restart();  
+        });
+    
 
-// ----------------modal--------------
-newBtn.onclick = function() {
-    $modalForm.style.display = "block";
-};
+    // ----------------modal--------------
+    const modalNew = 
+        newBtn.onclick = function() {
+            $modalForm.style.display = "block";
+        }
 
-// closes modal when clicked outside modal window
-window.onclick = function(event) {
-    if (event.target == $modalForm) {
-        $modalForm.style.display = "none";
-    }
-};
 
-$exit.onclick = () => {
-    $modalForm.style.display = "none";
-};
+    // closes modal when clicked outside modal window
+    const exit1 = 
+            window.onclick = function(event) {
+            if (event.target == $modalForm) {
+                $modalForm.style.display = "none";
+            }
+        }
 
+    const exit2 = 
+            $exit.onclick = () => {
+            $modalForm.style.display = "none";
+        };
+
+    return {modalNew, exit1, exit2, reset};
+    })
+();
 // -----------------------------------------
 
 const gameboard = (() => {
-
     var player = '' ;
     const board1 = document.getElementsByClassName('pos');
     var boardArr = Array.from(board1);
@@ -39,7 +50,7 @@ const gameboard = (() => {
         '', '', ''
     ];
 
-    const winConditions = [
+    const winCondition = [
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
@@ -111,6 +122,9 @@ const gameboard = (() => {
         } 
     };
 
+    const verifyWin = () => {
+
+    }
 
 // board onclick event triggers player marking board
     const gameEvent = boardArr.forEach((pos) => {
@@ -133,4 +147,5 @@ const gameboard = (() => {
         gameArray, populateBoard, boardArr, 
         resetValue, turnCount, turnRestart, 
         restart, clear}
-})();
+})
+();
