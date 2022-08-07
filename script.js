@@ -19,7 +19,6 @@ const modalFunct = (() => {
             $modalForm.style.display = "block";
         }
 
-
     // closes modal when clicked outside modal window
     const exit1 = 
             window.onclick = function(event) {
@@ -36,7 +35,6 @@ const modalFunct = (() => {
     return {modalNew, exit1, exit2, reset};
     })
 ();
-// -----------------------------------------
 
 const gameboard = (() => {
     var player = '' ;
@@ -123,7 +121,29 @@ const gameboard = (() => {
     };
 
     const verifyWin = () => {
+        let roundWon = false;
+        for(let i = 0; i <= 7; i++) {
+            const winCheck = winCondition[i];
+            let win1 = gameArray[winCheck[0]];
+            let win2 = gameArray[winCheck[1]];
+            let win3 = gameArray[winCheck[2]];
 
+            console.log(win1);
+            console.log(win2);
+            console.log(win3);
+
+            if (win1 === '' || win2 === '' || win3 === '') {
+                console.log(roundWon);
+                console.log('1st option');
+                continue;
+            }
+            if (win1 === win2 && win2 === win3) {
+                roundWon = true;
+                console.log(roundWon);
+                console.log('2nd option');
+                break
+            }
+        }
     }
 
 // board onclick event triggers player marking board
@@ -137,6 +157,7 @@ const gameboard = (() => {
                 gameArray.splice(boardArr.indexOf(pos), 1, player);  
                 gameboard.populateBoard();
                 pos.setAttribute('value', false); 
+                gameboard.verifyWin();
             } else {
                 return
             }
@@ -146,6 +167,6 @@ const gameboard = (() => {
     return {gameEvent, mark, players, 
         gameArray, populateBoard, boardArr, 
         resetValue, turnCount, turnRestart, 
-        restart, clear}
+        restart, clear, verifyWin}
 })
 ();
