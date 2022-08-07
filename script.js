@@ -37,10 +37,11 @@ const modalFunct = (() => {
 ();
 
 const gameboard = (() => {
+
     var player = '' ;
     const board1 = document.getElementsByClassName('pos');
     var boardArr = Array.from(board1);
-
+    // roundWon = true;
 
     gameArray = [
         '', '', '',
@@ -81,6 +82,12 @@ const gameboard = (() => {
         };
     };
 
+    const falsyValue = () => {
+        const board = document.getElementsByClassName('pos');
+        for (let i = 0; i < board.length; i++) {
+            board[i].setAttribute('value', falsyValue);
+        };
+    };
     // clears board display
     const clear = () => {
         const board = document.getElementsByClassName('pos');
@@ -128,19 +135,16 @@ const gameboard = (() => {
             let win2 = gameArray[winCheck[1]];
             let win3 = gameArray[winCheck[2]];
 
-            console.log(win1);
-            console.log(win2);
-            console.log(win3);
-
             if (win1 === '' || win2 === '' || win3 === '') {
-                console.log(roundWon);
-                console.log('1st option');
+                // console.log(roundWon);
+                console.log('no winnner');
                 continue;
             }
             if (win1 === win2 && win2 === win3) {
                 roundWon = true;
-                console.log(roundWon);
-                console.log('2nd option');
+                falsyValue();
+                // console.log(roundWon);
+                console.log('winner');
                 break
             }
         }
