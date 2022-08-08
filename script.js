@@ -16,6 +16,7 @@ const modalFunct = (() => {
     
         // ----------------modal--------------
     const modalNew = newBtn.onclick = function() {
+            gameDisplay.resetName();
             $modalForm.style.display = "block";
         }
     
@@ -153,7 +154,7 @@ const gameboard = (() => {
         <p class=marker> Sign: X </p>
         `
         const oppInfo = `
-        <h3>Name: ${gameboard.players[0].name}  </h3>
+        <h3>Name: ${gameboard.players[1].name}  </h3>
         <p class = score2>Score: ${oppScore} </p>
         <p class= makrker> Sign: O </p>
         `
@@ -238,15 +239,27 @@ return {gameEvent, mark, players,
 
 const gameDisplay = (() => {
     const startGame = document.querySelector('.startBtn');
+    const playerNames = document.querySelector('.playerName');
+    const oppNames = document.querySelector('.opponentName');
     startGame.addEventListener('click', () => {
         round = 1;
         gameboard.restart();
+        setName();
     })
 
-    const modalReset = () => {
-        
+    const setName = () => {
+         gameboard.players[0].name = playerNames.value;
+         gameboard.players[1].name = oppNames.value;
+
+        console.log(gameboard.players.name);
     }
 
-    return {startGame, modalReset}
+    const resetName = () => {
+        gameboard.players[0].name = "";
+        gameboard.players[1].name = "";
+
+    }
+
+    return {startGame, setName, resetName}
 })();
 
