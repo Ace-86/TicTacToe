@@ -4,24 +4,22 @@
 // round = 0;
 // roundWon= false;
 
-const modalFunct = (() => {
-    
+const modalFunct = (() => {    
     const newBtn = document.querySelector('.newGame');
     const restartBtn = document.querySelector('.restart');
     const $modalForm = document.querySelector('.modal');
     const $exit = document.querySelector('.exit');
     
     const reset = restartBtn.addEventListener('click', () => {
-            gameboard.restart();  
+            gameboard.restart();
         });
     
-
-    // ----------------modal--------------
+        // ----------------modal--------------
     const modalNew = newBtn.onclick = function() {
             $modalForm.style.display = "block";
         }
-
-    // closes modal when clicked outside modal window
+    
+        // closes modal when clicked outside modal window
     const exit1 = window.onclick = function(event) {
             if (event.target == $modalForm) {
                 $modalForm.style.display = "none";
@@ -70,9 +68,11 @@ const gameboard = (() => {
     
     const players = [{
         player: 1,
-        marker: 'X'},
+        marker: 'X',
+        name: ""},
         {player: 2,
-            marker: 'O'}
+        marker: 'O',
+        name: ""}
         ];
         
     // populate board with boardArray
@@ -141,7 +141,6 @@ const gameboard = (() => {
     const tieGame = () => {
         if( turnCounter == 9 && roundWon == false) {
             console.log('tie game');
-            
         }
     }
    
@@ -149,11 +148,13 @@ const gameboard = (() => {
         const p1score = document.querySelector('.p1-display');
         const p2score = document.querySelector('.p2-display');
         const playerInfo = `
+        <h3>Name: ${gameboard.players[0].name}  </h3>
         <p class=score1> Score: ${playerScore}</p>
         <p class=marker> Sign: X </p>
         `
         const oppInfo = `
-        <p class = score2> Score: ${oppScore} </p>
+        <h3>Name: ${gameboard.players[0].name}  </h3>
+        <p class = score2>Score: ${oppScore} </p>
         <p class= makrker> Sign: O </p>
         `
         p1score.innerHTML = playerInfo;
@@ -211,8 +212,8 @@ const gameboard = (() => {
 const gameEvent = boardArr.forEach((pos) => {
     pos.addEventListener('click', () => { 
         if (pos.getAttribute('value') == 'true') {
-            gameboard.gameArray;
-            gameboard.players;
+            // gameboard.gameArray;
+            // gameboard.players;
             gameboard.turnCount();
             gameboard.mark();
             gameArray.splice(boardArr.indexOf(pos), 1, player);  
@@ -235,13 +236,17 @@ return {gameEvent, mark, players,
 })
 ();
 
-// const scoreDisplay = (() => {
-//     const displayScore = document.querySelector('.score-display');
-//     const roundDisplay = document.createElement('div')
-//     const roundInfo = `
-//     <p class= round>Round: ${round}</p>
-//     <p class= turn> Turn : ${turnCounter}</p>
-//     `
-//    roundDisplay.innerHTML = roundInfo;          
-//     displayScore.appendChild(roundDisplay)
-// })();
+const gameDisplay = (() => {
+    const startGame = document.querySelector('.startBtn');
+    startGame.addEventListener('click', () => {
+        round = 1;
+        gameboard.restart();
+    })
+
+    const modalReset = () => {
+        
+    }
+
+    return {startGame, modalReset}
+})();
+
