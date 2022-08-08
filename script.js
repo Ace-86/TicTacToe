@@ -41,7 +41,7 @@ const modalFunct = (() => {
 const gameboard = (() => {
     turn = 0;
     turnCounter = 0;
-    round = 0;
+    round = 1;
     roundWon= false;
     playerScore = 0;
     oppScore = 0;
@@ -145,20 +145,34 @@ const gameboard = (() => {
         }
     }
    
+    const playerScores = () => {
+        const p1score = document.querySelector('.p1-display');
+        const p2score = document.querySelector('.p2-display');
+        const playerInfo = `
+        <p class=score1> Score: ${playerScore}</p>
+        <p class=marker> Sign: X </p>
+        `
+        const oppInfo = `
+        <p class = score2> Score: ${oppScore} </p>
+        <p class= makrker> Sign: O </p>
+        `
+        p1score.innerHTML = playerInfo;
+        p2score.innerHTML = oppInfo;
+   }
+
     const scoreDisplay = () => {
-        clearDisplay();
+        // clearDisplay();
         const displayScore = document.querySelector('.score-display');
         const roundDisplay = document.createElement('div')
         const roundInfo = `
-        <p class= round> ${round} </p>
-        <p class= turn> Turn : ${turnCounter}</p>`
-        roundDisplay.innerHTML = roundInfo;        
-        displayScore.appendChild(roundDisplay)
+        <p class= round> Round: ${round} </p>
+        <p class= turn> Turn: ${turnCounter}</p> `
+        displayScore.innerHTML = roundInfo;        
+        // displayScore.appendChild(roundDisplay)
     }
 
     clearDisplay = () => {
         const displayScore = document.querySelector('.score-display');
-
         displayScore.removeChild(displayScore.firstChild)
     }
 
@@ -182,8 +196,10 @@ const gameboard = (() => {
                 console.log('winner');
                 round++;
                 if (win1 === 'X') {
+                    playerScore++;
                     console.log('X wins')
                 } else {
+                    oppScore++;
                     console.log('O wins')
                 }
                 break
@@ -205,6 +221,7 @@ const gameEvent = boardArr.forEach((pos) => {
             gameboard.verifyWin();
             gameboard.tieGame();
             scoreDisplay();
+            playerScores();
         } else {
             return
         }
@@ -225,22 +242,6 @@ return {gameEvent, mark, players,
 //     <p class= round>Round: ${round}</p>
 //     <p class= turn> Turn : ${turnCounter}</p>
 //     `
-//    roundDisplay.innerHTML = roundInfo;        
-  
+//    roundDisplay.innerHTML = roundInfo;          
 //     displayScore.appendChild(roundDisplay)
 // })();
-
-
-// const cardContainer = `<div class="card-container" data-index=${i}>
-// <p class='titles'>Book Title: ${book.title}</p>
-// <p >Book Author: ${book.author}</p>
-// <p>Total Pages: ${book.page}</p>
-
-// </div>`
-// const elementdiv = document.createElement('div');
-// elementdiv.className = 'contain1';
-// const removeButton = document.createElement('button');
-// removeButton.className = 'removeBtn';
-// removeButton.textContent = 'X';
-// elementdiv.innerHTML= cardContainer;
-// $card.appendChild(elementdiv);
