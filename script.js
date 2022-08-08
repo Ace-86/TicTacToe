@@ -1,4 +1,8 @@
+
 turn = 0;
+turnCounter = 0;
+round = 0;
+roundWon= false;
 
 const modalFunct = (() => {
     
@@ -14,8 +18,7 @@ const modalFunct = (() => {
     
 
     // ----------------modal--------------
-    const modalNew = 
-        newBtn.onclick = function() {
+    const modalNew = newBtn.onclick = function() {
             $modalForm.style.display = "block";
         }
 
@@ -27,8 +30,7 @@ const modalFunct = (() => {
             }
         }
 
-    const exit2 = 
-            $exit.onclick = () => {
+    const exit2 = $exit.onclick = () => {
             $modalForm.style.display = "none";
         };
 
@@ -116,6 +118,7 @@ const gameboard = (() => {
         turnRestart();
         resetValue();
         clear();
+        turnCounter = 0;
     };
 
     // players marker switches every turn, starting with player 1 (turn 0)
@@ -127,8 +130,15 @@ const gameboard = (() => {
         } 
     };
 
+    const tieGame = () => {
+        if( turnCounter == 9 && roundWon == false) {
+            console.log('tie game');
+        }
+    }
+
     const verifyWin = () => {
-        let roundWon = false;
+        turnCounter++;
+        roundWon = false;
         for(let i = 0; i <= 7; i++) {
             const winCheck = winCondition[i];
             let win1 = gameArray[winCheck[0]];
@@ -136,15 +146,21 @@ const gameboard = (() => {
             let win3 = gameArray[winCheck[2]];
 
             if (win1 === '' || win2 === '' || win3 === '') {
-                // console.log(roundWon);
                 console.log('no winnner');
                 continue;
             }
             if (win1 === win2 && win2 === win3) {
                 roundWon = true;
                 falsyValue();
-                // console.log(roundWon);
+                console.log(win1, win2, win3)
                 console.log('winner');
+                round++;
+                if (win1 === 'X') {
+                    console.log('X wins')
+                } else {
+                    console.log('O wins')
+                }
+
                 break
             }
         }
@@ -162,6 +178,7 @@ const gameboard = (() => {
                 gameboard.populateBoard();
                 pos.setAttribute('value', false); 
                 gameboard.verifyWin();
+                gameboard.tieGame();
             } else {
                 return
             }
@@ -171,6 +188,6 @@ const gameboard = (() => {
     return {gameEvent, mark, players, 
         gameArray, populateBoard, boardArr, 
         resetValue, turnCount, turnRestart, 
-        restart, clear, verifyWin}
+        restart, clear, verifyWin, tieGame}
 })
 ();
