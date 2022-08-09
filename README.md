@@ -12,16 +12,16 @@ To-Do:
 
 -round count shows in display (complete)
 
--allow players to choose which marker (modal)
-
 -display shows winner, round, player turn; updated each turn (complete)
 
--npc a.i
-
 -Build the logic that checks for when the game is over! Should check for 3-in-a-row and a tie. (complete)
+
 
 -Clean up the interface to allow players to put in their names (complete)
 
 -button to start/restart the game (complete)
 
+-npc a.i
+
 -add a display element that congratulates the winning player!
+-allow players to choose marker (modal)
