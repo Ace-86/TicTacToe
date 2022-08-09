@@ -1,9 +1,3 @@
-
-// turn = 0;
-// turnCounter = 0;
-// round = 0;
-// roundWon= false;
-
 const modalFunct = (() => {    
     const newBtn = document.querySelector('.newGame');
     const restartBtn = document.querySelector('.restart');
@@ -16,7 +10,10 @@ const modalFunct = (() => {
     
         // ----------------modal--------------
     const modalNew = newBtn.onclick = function() {
+            gameboard.restart();
             gameDisplay.resetName();
+            gameboard.scoreDisplay();
+            gameboard.playerScores();
             $modalForm.style.display = "block";
         }
     
@@ -120,6 +117,12 @@ const gameboard = (() => {
     };
     // ------------------------------
     
+    const scoreReset = () => {
+        oppScore = 0;
+        playerScore = 0;
+    }
+
+
     // resets game turn, board values and empties innerHTML
     const restart = () => {
         turnRestart();
@@ -163,14 +166,12 @@ const gameboard = (() => {
    }
 
     const scoreDisplay = () => {
-        // clearDisplay();
         const displayScore = document.querySelector('.score-display');
         const roundDisplay = document.createElement('div')
         const roundInfo = `
         <p class= round> Round: ${round} </p>
         <p class= turn> Turn: ${turnCounter}</p> `
         displayScore.innerHTML = roundInfo;        
-        // displayScore.appendChild(roundDisplay)
     }
 
     clearDisplay = () => {
@@ -213,8 +214,6 @@ const gameboard = (() => {
 const gameEvent = boardArr.forEach((pos) => {
     pos.addEventListener('click', () => { 
         if (pos.getAttribute('value') == 'true') {
-            // gameboard.gameArray;
-            // gameboard.players;
             gameboard.turnCount();
             gameboard.mark();
             gameArray.splice(boardArr.indexOf(pos), 1, player);  
@@ -233,33 +232,48 @@ const gameEvent = boardArr.forEach((pos) => {
 return {gameEvent, mark, players, 
     gameArray, populateBoard, boardArr, 
     resetValue, turnCount, turnRestart, 
-    restart, clear, verifyWin, tieGame, round, turnCounter, scoreDisplay}
+    restart, clear, verifyWin, tieGame, 
+    round, turnCounter, scoreDisplay,
+    playerScores, scoreReset}
 })
 ();
 
 const gameDisplay = (() => {
-    const startGame = document.querySelector('.startBtn');
+    
+    const newGame = document.querySelector('.startBtn');
+    const $modalForm = document.querySelector('.modal');
     const playerNames = document.querySelector('.playerName');
     const oppNames = document.querySelector('.opponentName');
-    startGame.addEventListener('click', () => {
+
+
+    newGame.addEventListener('click', () => {
         round = 1;
         gameboard.restart();
+        gameboard.scoreReset()
         setName();
+        gameboard.scoreDisplay();
+        gameboard.playerScores();
+        newExit();
     })
 
     const setName = () => {
-         gameboard.players[0].name = playerNames.value;
-         gameboard.players[1].name = oppNames.value;
-
-        console.log(gameboard.players.name);
+        gameboard.players[0].name = playerNames.value;
+        gameboard.players[1].name = oppNames.value;
     }
 
     const resetName = () => {
         gameboard.players[0].name = "";
         gameboard.players[1].name = "";
-
+        playerNames.value = "";
+        oppNames.value = "";
     }
 
-    return {startGame, setName, resetName}
+    const newExit = () => {
+        $modalForm.style.display = "none";
+    }
+
+
+
+    return {newGame, setName, resetName, newExit}
 })();
 
