@@ -39,9 +39,11 @@ const gameboard = (() => {
     turnCounter = 0;
     round = 1;
     roundWon= false;
+    playerWon = 0;
     playerScore = 0;
     oppScore = 0;
     
+
     var player = '' ;
     const board1 = document.getElementsByClassName('pos');
     var boardArr = Array.from(board1);
@@ -145,6 +147,9 @@ const gameboard = (() => {
     const tieGame = () => {
         if( turnCounter == 9 && roundWon == false) {
             console.log('tie game');
+            playerWon = 3;
+            gameDisplay.gameMessage();
+
         }
     }
    
@@ -179,6 +184,12 @@ const gameboard = (() => {
         displayScore.removeChild(displayScore.firstChild)
     }
 
+    outcomeMessage = () => {
+       if (roundWon = true) {
+        gameDisplay.gameMessage();
+       }
+    }
+
     const verifyWin = () => {
         turnCounter++;
         roundWon = false;
@@ -200,9 +211,13 @@ const gameboard = (() => {
                 round++;
                 if (win1 === 'X') {
                     playerScore++;
+                    playerWon = 1;
+                    outcomeMessage();
                     console.log('X wins')
                 } else {
                     oppScore++;
+                    playerWon = 2;
+                    outcomeMessage();
                     console.log('O wins')
                 }
                 break
@@ -234,7 +249,7 @@ return {gameEvent, mark, players,
     resetValue, turnCount, turnRestart, 
     restart, clear, verifyWin, tieGame, 
     round, turnCounter, scoreDisplay,
-    playerScores, scoreReset}
+    playerScores, outcomeMessage, scoreReset, playerWon}
 })
 ();
 
@@ -244,7 +259,8 @@ const gameDisplay = (() => {
     const $modalForm = document.querySelector('.modal');
     const playerNames = document.querySelector('.playerName');
     const oppNames = document.querySelector('.opponentName');
-
+    const outcome = document.querySelector('.modal2')
+    const outcomeDisplay = document.querySelector('.messageBox')
 
     newGame.addEventListener('click', () => {
         round = 1;
@@ -272,8 +288,43 @@ const gameDisplay = (() => {
         $modalForm.style.display = "none";
     }
 
+    const gameMessage = () => {
+        const outcomeBox = document.createElement('div');
+       
+        if ( playerWon === 1) {
+        const winMessage = `<p> Player 1 wins</p>
+        <button class="continue"> CONTINUE </button>
+        `
+        outcomeBox.innerHTML = winMessage;
+        outcomeDisplay.appendChild(outcomeBox);
+        } else if ( playerWon === 2) {
+        const winMessage = `<p> Player 2 Wins </p>
+            <button class = "continue"> CONTINUE </button>
+        `
+        outcomeBox.innerHTML = winMessage;
+        outcomeDisplay.appendChild(outcomeBox);
+        } else if ( playerWon === 3) {
+        const winMessage = `<p> Tie Game </p>
+            <button class = "continue"> CONTINUE </button>
+                `
+        outcomeBox.innerHTML = winMessage;
+        outcomeDisplay.appendChild(outcomeBox);
+        } 
+        //  else if ( ) {
+        // const gameOver = `<p> game set </p>
+        //     <p> ${player} Wins! </p>
+        //     <button> Rematch </button>
+        //     <button> Quit </button>
+        // `
+        // }
+        // outcomeBox.innerHTML = winMessage;
+        // outcomeDisplay.appendChild(outcomeBox);
+        
+        outcome.style.display = "block"
+    }
 
 
-    return {newGame, setName, resetName, newExit}
+
+    return {newGame, setName, resetName, newExit, gameMessage}
 })();
 
