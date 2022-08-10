@@ -1,4 +1,5 @@
 const modalFunct = (() => {    
+
     const newBtn = document.querySelector('.newGame');
     const restartBtn = document.querySelector('.restart');
     const $modalForm = document.querySelector('.modal');
@@ -35,6 +36,7 @@ const modalFunct = (() => {
 
 
 const gameboard = (() => {
+
     turn = 0;
     turnCounter = 0;
     round = 1;
@@ -43,7 +45,6 @@ const gameboard = (() => {
     playerScore = 0;
     oppScore = 0;
     
-
     var player = '' ;
     const board1 = document.getElementsByClassName('pos');
     var boardArr = Array.from(board1);
@@ -149,7 +150,6 @@ const gameboard = (() => {
             console.log('tie game');
             playerWon = 3;
             gameDisplay.gameMessage();
-
         }
     }
    
@@ -259,8 +259,9 @@ const gameDisplay = (() => {
     const $modalForm = document.querySelector('.modal');
     const playerNames = document.querySelector('.playerName');
     const oppNames = document.querySelector('.opponentName');
-    const outcome = document.querySelector('.modal2')
-    const outcomeDisplay = document.querySelector('.messageBox')
+    const outcome = document.querySelector('.modal2');
+    const outcomeDisplay = document.querySelector('.messageBox');
+    const contBtn = document.querySelector('.continue');
 
     newGame.addEventListener('click', () => {
         round = 1;
@@ -290,41 +291,47 @@ const gameDisplay = (() => {
 
     const gameMessage = () => {
         const outcomeBox = document.createElement('div');
+        const continueBtn = document.createElement('button')
+        continueBtn.classList.add('continue2');
        
         if ( playerWon === 1) {
         const winMessage = `<p> Player 1 wins</p>
-        <button class="continue"> CONTINUE </button>
         `
+
         outcomeBox.innerHTML = winMessage;
         outcomeDisplay.appendChild(outcomeBox);
+        outcomeBox.appendChild(continueBtn);
+        contExit();
         } else if ( playerWon === 2) {
         const winMessage = `<p> Player 2 Wins </p>
-            <button class = "continue"> CONTINUE </button>
         `
         outcomeBox.innerHTML = winMessage;
         outcomeDisplay.appendChild(outcomeBox);
+        outcomeBox.appendChild(continueBtn);
+        contExit();
         } else if ( playerWon === 3) {
         const winMessage = `<p> Tie Game </p>
-            <button class = "continue"> CONTINUE </button>
                 `
-        outcomeBox.innerHTML = winMessage;
-        outcomeDisplay.appendChild(outcomeBox);
+                outcomeBox.innerHTML = winMessage;
+                outcomeDisplay.appendChild(outcomeBox);
+                outcomeBox.appendChild(continueBtn);
+                contExit();
         } 
-        //  else if ( ) {
-        // const gameOver = `<p> game set </p>
-        //     <p> ${player} Wins! </p>
-        //     <button> Rematch </button>
-        //     <button> Quit </button>
-        // `
-        // }
-        // outcomeBox.innerHTML = winMessage;
-        // outcomeDisplay.appendChild(outcomeBox);
-        
         outcome.style.display = "block"
     }
 
+    const contExit = () => {
+        if ( playerWon !== 0) {
+        const contBtn = document.querySelector('.continue2');
+        contBtn.addEventListener('click', () => {
+            outcome.style.display = "none"   
+            outcomeDisplay.innerHTML = "";
+            gameboard.restart();
+ })
+}
+}
 
 
-    return {newGame, setName, resetName, newExit, gameMessage}
+    return {newGame, setName, resetName, newExit, gameMessage, contExit}
 })();
 
