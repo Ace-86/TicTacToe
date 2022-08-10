@@ -45,11 +45,10 @@ const gameboard = (() => {
     playerScore = 0;
     oppScore = 0;
     
-    var player = '' ;
+    var player = '';
     const board1 = document.getElementsByClassName('pos');
     var boardArr = Array.from(board1);
-    // roundWon = true;
-    
+
     gameArray = [
         '', '', '',
         '', '', '',
@@ -289,22 +288,23 @@ const gameDisplay = (() => {
         $modalForm.style.display = "none";
     }
 
+    // ----on window, game window, lose or tie displays---
     const gameMessage = () => {
         const outcomeBox = document.createElement('div');
         const continueBtn = document.createElement('button')
         continueBtn.classList.add('continue2');
+        continueBtn.textContent = 'CONTINUE';
        
         if ( playerWon === 1) {
         const winMessage = `<p> Player 1 wins</p>
         `
-
         outcomeBox.innerHTML = winMessage;
         outcomeDisplay.appendChild(outcomeBox);
         outcomeBox.appendChild(continueBtn);
         contExit();
         } else if ( playerWon === 2) {
         const winMessage = `<p> Player 2 Wins </p>
-        `
+`
         outcomeBox.innerHTML = winMessage;
         outcomeDisplay.appendChild(outcomeBox);
         outcomeBox.appendChild(continueBtn);
@@ -320,6 +320,7 @@ const gameDisplay = (() => {
         outcome.style.display = "block"
     }
 
+    // ---continue button exits modal---
     const contExit = () => {
         if ( playerWon !== 0) {
         const contBtn = document.querySelector('.continue2');
@@ -330,7 +331,6 @@ const gameDisplay = (() => {
  })
 }
 }
-
 
     return {newGame, setName, resetName, newExit, gameMessage, contExit}
 })();
