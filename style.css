@@ -140,6 +140,10 @@ body {
 
 /* blue modal */
 .form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(89, 0, 206);
     margin: 15% auto;
     padding: 20px;
@@ -148,6 +152,8 @@ body {
 }
 
 .exit {
+    display: flex;
+    align-self: end;
     color:aqua;
     float: right;
     font-size: 28px;
@@ -179,6 +185,9 @@ body {
 }
 
 .messageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(89, 0, 206);
     margin: 15% auto;
     padding: 20px;
