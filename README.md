@@ -23,5 +23,6 @@ To-Do:
 
 -npc a.i
 
--add a display element that congratulates the winning player!
+-add a display element that congratulates the winning player! (complete)
+
 -allow players to choose marker (modal)
