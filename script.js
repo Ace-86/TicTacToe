@@ -178,6 +178,7 @@ const gameboard = (() => {
         displayScore.innerHTML = roundInfo;        
     }
 
+    // erases the current display
     clearDisplay = () => {
         const displayScore = document.querySelector('.score-display');
         displayScore.removeChild(displayScore.firstChild)
@@ -189,6 +190,7 @@ const gameboard = (() => {
        }
     }
 
+    // verify if player wins match
     const verifyWin = () => {
         turnCounter++;
         roundWon = false;
@@ -262,6 +264,7 @@ const gameDisplay = (() => {
     const outcomeDisplay = document.querySelector('.messageBox');
     const contBtn = document.querySelector('.continue');
 
+    // new game button activates modal
     newGame.addEventListener('click', () => {
         round = 1;
         gameboard.restart();
@@ -272,11 +275,13 @@ const gameDisplay = (() => {
         newExit();
     })
 
+    // modal name input
     const setName = () => {
         gameboard.players[0].name = playerNames.value;
         gameboard.players[1].name = oppNames.value;
     }
 
+    // clears input field
     const resetName = () => {
         gameboard.players[0].name = "";
         gameboard.players[1].name = "";
@@ -284,6 +289,7 @@ const gameDisplay = (() => {
         oppNames.value = "";
     }
 
+    // exit modal function
     const newExit = () => {
         $modalForm.style.display = "none";
     }
@@ -298,6 +304,7 @@ const gameDisplay = (() => {
         continueBtn.classList.add('continue2');
         continueBtn.textContent = 'CONTINUE';
        
+        // player 1 wins round
         if ( playerWon === 1 && playerScore < 2) {
         const winMessage = `<p> Player 1 wins</p>
         `
@@ -305,6 +312,7 @@ const gameDisplay = (() => {
         outcomeDisplay.appendChild(outcomeBox);
         outcomeBox.appendChild(continueBtn);
         contExit();
+        // player 2 wins round
         } else if ( playerWon === 2 && oppScore < 2) {
         const winMessage = `<p> Player 2 Wins </p>
 `
@@ -312,6 +320,7 @@ const gameDisplay = (() => {
         outcomeDisplay.appendChild(outcomeBox);
         outcomeBox.appendChild(continueBtn);
         contExit();
+        // tie game
         } else if ( playerWon === 3) {
         const winMessage = `<p> Tie Game </p>
                 `
@@ -319,6 +328,7 @@ const gameDisplay = (() => {
                 outcomeDisplay.appendChild(outcomeBox);
                 outcomeBox.appendChild(continueBtn);
                 contExit();
+                // player 1 wins match
         } else if (playerScore === 2) {
             const winMessage = `<p> Game Over</p>
                                 <p> Player 1 WINS!!! </p>
@@ -328,6 +338,7 @@ const gameDisplay = (() => {
             // outcomeBox.appendChild(continueBtn);
             outcomeBox.appendChild(newgameBtn);
             matchEnd();
+            // player 2 wins match
         } else if (oppScore === 2) {
             const winMessage = `<p> Game Over</p>
                                 <p> Player 2 WINS!!! </p>
@@ -349,14 +360,15 @@ const gameDisplay = (() => {
             outcome.style.display = "none"   
             outcomeDisplay.innerHTML = "";
             gameboard.restart();
- })
-}
+            })
+        }
     }
 
+// new game after match over restarts (keeps names)
     const matchEnd = () => {
         if ( playerWon !== 0) {
         const newgame = document.querySelector('.newgameBtn');
-         newgame.addEventListener('click', () => {
+        newgame.addEventListener('click', () => {
             outcome.style.display = "none"   
             outcomeDisplay.innerHTML = "";
             round = 1;
@@ -364,8 +376,8 @@ const gameDisplay = (() => {
             gameboard.restart();
             gameboard.scoreDisplay();
             gameboard.playerScores();
-})
-}
+            })
+        }
     }
 
     
