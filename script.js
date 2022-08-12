@@ -292,17 +292,20 @@ const gameDisplay = (() => {
     const gameMessage = () => {
         const outcomeBox = document.createElement('div');
         const continueBtn = document.createElement('button')
+        const newgameBtn = document.createElement('button')
+        newgameBtn.classList.add('newgameBtn')
+        newgameBtn.textContent = 'NEW GAME'
         continueBtn.classList.add('continue2');
         continueBtn.textContent = 'CONTINUE';
        
-        if ( playerWon === 1) {
+        if ( playerWon === 1 && playerScore < 2) {
         const winMessage = `<p> Player 1 wins</p>
         `
         outcomeBox.innerHTML = winMessage;
         outcomeDisplay.appendChild(outcomeBox);
         outcomeBox.appendChild(continueBtn);
         contExit();
-        } else if ( playerWon === 2) {
+        } else if ( playerWon === 2 && oppScore < 2) {
         const winMessage = `<p> Player 2 Wins </p>
 `
         outcomeBox.innerHTML = winMessage;
@@ -316,7 +319,25 @@ const gameDisplay = (() => {
                 outcomeDisplay.appendChild(outcomeBox);
                 outcomeBox.appendChild(continueBtn);
                 contExit();
-        } 
+        } else if (playerScore === 2) {
+            const winMessage = `<p> Game Over</p>
+                                <p> Player 1 WINS!!! </p>
+            `
+            outcomeBox.innerHTML = winMessage;
+            outcomeDisplay.appendChild(outcomeBox);
+            // outcomeBox.appendChild(continueBtn);
+            outcomeBox.appendChild(newgameBtn);
+            matchEnd();
+        } else if (oppScore === 2) {
+            const winMessage = `<p> Game Over</p>
+                                <p> Player 2 WINS!!! </p>
+            `
+            outcomeBox.innerHTML = winMessage;
+            outcomeDisplay.appendChild(outcomeBox);
+            // outcomeBox.appendChild(continueBtn);
+            outcomeBox.appendChild(newgameBtn);
+            matchEnd();
+        }
         outcome.style.display = "block"
     }
 
@@ -330,8 +351,20 @@ const gameDisplay = (() => {
             gameboard.restart();
  })
 }
-}
+    }
 
-    return {newGame, setName, resetName, newExit, gameMessage, contExit}
+    const matchEnd = () => {
+        if ( playerWon !== 0) {
+        const newgame = document.querySelector('.newgameBtn');
+         newgame.addEventListener('click', () => {
+            outcome.style.display = "none"   
+            outcomeDisplay.innerHTML = "";
+            gameboard.restart();
+})
+}
+    }
+
+    
+    return {newGame, setName, resetName, newExit, gameMessage, contExit, matchEnd}
 })();
 
