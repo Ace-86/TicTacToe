@@ -359,7 +359,11 @@ const gameDisplay = (() => {
          newgame.addEventListener('click', () => {
             outcome.style.display = "none"   
             outcomeDisplay.innerHTML = "";
+            round = 1;
+            gameboard.scoreReset();
             gameboard.restart();
+            gameboard.scoreDisplay();
+            gameboard.playerScores();
 })
 }
     }
